@@ -1,4 +1,9 @@
 // 3rd party dependancies
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+}
+
+
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -39,7 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 // session and cookie setup
 const sessionConfig = {
-    secret: 'PleaseUseABetterSecret!!',
+    secret: process.env.SESSION_SECRET_KEY,
     resave: false,
     saveUninitialized: true,
     cookie: {
