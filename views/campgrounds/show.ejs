@@ -1,8 +1,8 @@
 <% layout('layouts/boilerplate')%>
     <link rel="stylesheet" href="/stylesheets/starRating.css">
-
     <div class="row">
         <div class="col-6 ">
+            <div id='map' class="mb-3 mx-auto" style='width: 400px; height: 300px;'></div>
             <div id="campgroundCarousel" class="carousel slide" data-bs-ride="carousel">
                 <% if(campground.images.length> 1) {%>
                     <div class="carousel-indicators">
@@ -130,3 +130,6 @@
         </div>
 
     </div>
+    <script>const mapToken = '<%-process.env.MAPBOX_TOKEN%>';</script>
+    <script>const geocord = JSON.parse('<%-JSON.stringify(campground)%>');</script>
+    <script src="/javascripts/showPageMap.js"></script>

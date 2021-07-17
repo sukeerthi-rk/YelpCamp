@@ -19,6 +19,10 @@ const seedDB = async () => {
         const camp = new Campground({
             author: '60e72a0886413f08040662d4',
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
+            geoJson: {
+                type: "Point",
+                coordinates: [77.609864, 12.970188]
+            },
             title: `${sample(descriptors)} ${sample(places)}`,
             description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit.Nisi, odit eveniet atque quidem ipsa ullam inventore at accusamus, eum repudiandae aspernatur accusantium corporis distinctio dignissimos iusto tempora sit recusandae soluta?',
             price: 24.50,

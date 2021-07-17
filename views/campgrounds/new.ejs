@@ -1,4 +1,5 @@
 <% layout('layouts/boilerplate')%>
+
     <div class="row">
         <h1 class="text-center">New Campground</h1>
         <div class="col-6 offset-3">
@@ -14,8 +15,18 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="location">Location</label>
-                    <input class="form-control" type="text" id="location" name="campground[location]" required>
+
+
+
+                    <label class="form-label" for="geocode">Add Location: (Use the search bar or manually find the spot
+                        and click)</label>
+                    <input class="form-control" type="text" id="geocode" name="campground[geocode]" required hidden>
+                    <div class="" id="map"></div>
+                    <pre id="info"></pre>
+
+
+                    <label class="form-label" for="location"></label>
+                    <input class="form-control" type="text" id="location" name="campground[location]" required hidden>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -65,5 +76,8 @@
                 </div>
             </form>
             <a href="/campgrounds">All Campgrounds</a>
+
         </div>
     </div>
+    <script>const mapToken = '<%-process.env.MAPBOX_TOKEN%>';</script>
+    <script src="/javascripts/newPageMap.js"></script>
