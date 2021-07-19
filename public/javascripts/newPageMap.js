@@ -5,8 +5,9 @@ var map = new mapboxgl.Map({
     center: [77.59105480145251, 12.978133187015658],
     zoom: 14
 });
-var marker1 = new mapboxgl.Marker();
+
 var currentMarkers = [];
+var mapPopup = new mapboxgl.Popup()
 map.on('click', async function (e) {
     var coordinates = e.lngLat;
     if (currentMarkers !== null) {
@@ -15,7 +16,8 @@ map.on('click', async function (e) {
         }
     }
 
-    marker1.setLngLat(coordinates)
+    var marker1 = new mapboxgl.Marker()
+        .setLngLat(coordinates)
         .addTo(map);
     currentMarkers.push(marker1);
     let lng = e.lngLat.lng;
@@ -24,7 +26,7 @@ map.on('click', async function (e) {
     let response = await fetch(reverseGeocodeURL);
     let res = await response.json();
     let place = res.features[0].place_name;
-    new mapboxgl.Popup()
+    mapPopup
         .setLngLat(coordinates)
         .setHTML('place selected: <br/>' + place)
         .addTo(map);
@@ -39,14 +41,17 @@ var geocoder = new MapboxGeocoder({
 map.addControl(geocoder);
 
 geocoder.on('result', function (e) {
-    // if (currentMarkers !== null) {
-    //     for (var i = currentMarkers.length - 1; i >= 0; i--) {
-    //         currentMarkers[i].remove();
-    //     }
-    // }
-    // marker1.setLngLat(coordinates)
-    //     .addTo(map);
-    // currentMarkers.push(marker1);
+    mapPopup.remove();
+    geocoder.clear();
+    if (currentMarkers !== null) {
+        for (var i = currentMarkers.length - 1; i >= 0; i--) {
+            currentMarkers[i].remove();
+        }
+    }
+    var marker2 = new mapboxgl.Marker()
+        .setLngLat(e.result.geometry.coordinates)
+        .addTo(map);
+    currentMarkers.push(marker2);
     document.getElementById('geocode').value = `${e.result.geometry.coordinates[0]},${e.result.geometry.coordinates[1]}`;
     document.getElementById('location').value = e.result.place_name;
 });
