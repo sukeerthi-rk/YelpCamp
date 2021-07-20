@@ -35,8 +35,8 @@ const seedDB = async () => {
                     filename: 'YelpTrail/ypwjxydda03ia0s6m2ij'
                 },
                 {
-                    url: 'https://res.cloudinary.com/yelptrail/image/upload/v1626274169/YelpTrail/g8jzmfpmg6phxj2b2wth.jpg',
-                    filename: 'YelpTrail/g8jzmfpmg6phxj2b2wth'
+                    url: 'https://res.cloudinary.com/yelptrail/image/upload/v1626274169/YelpTrail/echuyrw6nzdptqd4mzwd.jpg',
+                    filename: 'YelpTrail/echuyrw6nzdptqd4mzwd'
                 }
             ]
         })

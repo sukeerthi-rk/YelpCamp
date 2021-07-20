@@ -77,7 +77,7 @@ app.use('/campgrounds/:id/reviews', reviewRoutes);
 app.use('/', userRoutes);
 
 app.get('/', (req, res) => {
-    res.send("ggwp")
+    res.render('home')
 })
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page not found', 404));
