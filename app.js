@@ -17,6 +17,7 @@ const localStrategy = require('passport-local');
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require("helmet");
 const MongoStore = require('connect-mongo');
+const favicon = require('serve-favicon');
 
 
 // utilities
@@ -47,6 +48,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
+app.use(favicon(path.join(__dirname, 'public','favicon','favicon.ico')))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(mongoSanitize());
 app.use(helmet());
