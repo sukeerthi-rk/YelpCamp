@@ -16,26 +16,35 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="location">Location:</label>
-                    <input class="form-control" type="text" id="location" name="campground[location]"
-                        value="<%=campground.location %>" required>
-                    <div class="valid-feedback">
+
+
+
+                    <label class="form-label" for="geocode">Edit Location: (Use the search bar or manually find the spot
+                        and click)</label>
+                    <input class="form-control" type="text" id="geocode" name="campground[geocode]" hidden>
+                    <div class="" id="map"></div>
+                    <pre id="info"></pre>
+
+
+                    <label class="form-label" for="location"></label>
+                    <input class="form-control" type="text" id="location" name="campground[location]" hidden>
+                    <!-- <div class="valid-feedback">
                         Looks good!
                     </div>
                     <div class="invalid-feedback">
                         Please provide a valid location.
-                    </div>
+                    </div> -->
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="image">Add images:</label>
                     <!-- <input class="form-control" type="text" id="image" name="campground[image]" required> -->
                     <input class="form-control" type="file" name="images" multiple id="image">
-                    <div class="valid-feedback">
+                    <!-- <div class="valid-feedback">
                         Looks good!
                     </div>
                     <div class="invalid-feedback">
                         Please provide a valid image URL.
-                    </div>
+                    </div> -->
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="price">Campground Price:</label>
@@ -64,8 +73,8 @@
                         Please provide a description for the campground.
                     </div>
                 </div>
-                <div class="mb-3">
-                    <h6>Delete Images:</h6>
+                <div class="mb-3 card" style="width: 18rem;">
+                    <h6 class="card-title">Delete Images:</h6>
                     <% campground.images.forEach(function(img,i){ %>
                         <img src="<%= img.thumbnail %> " class="img-thumbnail img-fluid" alt="">
                         <div class="form-check">
@@ -78,7 +87,7 @@
                         <% }) %>
                 </div>
                 <div class="mb-3">
-                    <button class="btn btn-info">Update Campground</button>
+                    <button class="btn btn-info submit">Update Campground</button>
                 </div>
             </form>
             <style>.btn-secondary, .btn-secondary:hover{
@@ -89,3 +98,9 @@
                 Campgrounds</a>
         </div>
     </div>
+
+    <script>const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+    const campgroundLocation = <%- JSON.stringify(campground.geometry.coordinates)%>;
+    const campgroundPlace = <%- JSON.stringify(campground.location)%>
+    </script>
+    <script src="/javascripts/editPageMap.js"></script>
