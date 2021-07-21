@@ -10,3 +10,5 @@ const map = new mapboxgl.Map({
 new mapboxgl.Marker()
     .setLngLat(geocord.coordinates)
     .addTo(map);
+
+map.addControl(new mapboxgl.NavigationControl());

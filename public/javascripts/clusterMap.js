@@ -5,7 +5,7 @@ var map = new mapboxgl.Map({
     center: [78.9629, 20.5937],
     zoom: 4
 });
-
+map.addControl(new mapboxgl.NavigationControl());
 map.on('load', function () {
     // Add a new source from our GeoJSON data and
     // set the 'cluster' option to true. GL-JS will
@@ -134,4 +134,5 @@ map.on('load', function () {
     map.on('mouseleave', 'clusters', function () {
         map.getCanvas().style.cursor = '';
     });
+    
 });

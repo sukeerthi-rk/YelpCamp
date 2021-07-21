@@ -44,6 +44,7 @@ var geocoder = new MapboxGeocoder({
     mapboxgl: mapboxgl
 })
 map.addControl(geocoder);
+map.addControl(new mapboxgl.NavigationControl());
 
 geocoder.on('result', function (e) {
     mapPopup.remove();
